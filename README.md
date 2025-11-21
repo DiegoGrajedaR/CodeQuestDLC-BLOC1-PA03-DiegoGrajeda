@@ -61,4 +61,50 @@ Cas "Normal" --> nameWizard = "byrOn"
 |2|5|"Byron"|1|1|5|37|totalPower >= 35 and <40|
 |3|-|"Byron"|1|1|5|37|Output: "Wow! You can summon dragons without burning down the lab! Byron your wizard range is Elarion of the Embers with a total power of 37!"|
 
+---  
+
+## Chapter 2. Increase LVL (Combat amb daus) ⚔️
+Apareix un monstre aleatori amb els seus punts de vida (HP).
+- El jugador tira un dau (aleatori entre 1 i 6).  
+- Cada tirada resta HP al monstre i mostra un ASCII art del dau.  
+- Quan el monstre arriba a 0 HP, el jugador puja un nivell (màxim nivell 5).  
+
+|Monstre|HP|
+|-------|--|
+|Wandering Skeleton 💀|3|
+|Forest Goblin 👹|5|
+|Green Slime 🟢|10|
+|Ember Wolf 🐺|11|
+|Iron Golem 🤖|15|
+|Giant Spider 🕷️|18|
+|Lost Necromancer 🧝‍♂️|20|
+|Ancient Dragon 🐉|50|
+
+### Joc de proves Chapter 2 📓
+
+Cas 1. Generar monstre amb el seu HP segons el random
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 2 en switch|monsterNameHpOption, monstersArray, hpMonstersArray|Enter case 2|Enter case 2|
+|2. Número aleatori generat per random per a monsterNameHpOption|monsterNameHpOption = 2, monstersArray [monsterNameHpOption] = "Green Slime 🟢", hpMonstersArray [monsterNameHpOption] = 10|Monstre= "Green Slime 🟢" i HP= 10|Monstre= "Green Slime 🟢" i HP= 10|
+|2. Número aleatori generat per random per a monsterNameHpOption|monsterNameHpOption = 6, monstersArray [monsterNameHpOption] = "Lost Necromancer 🧝‍♂️", hpMonstersArray [monsterNameHpOption] = 20|Monstre= "Lost Necromancer 🧝‍♂️" i HP= 20|Monstre= "Lost Necromancer 🧝‍♂️" i HP= 20|
+
+Cas 2. Generar número del dau amb random
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 2 en switch|diceNum|Enter case 2|Enter case 2|
+|2. Premer una tecla quan demani "Press any key"|diceNum|Generar random en diceNum de 0 a 5|Generar random en diceNum de 0 a 5|
+|3. Valor del diceNum|diceNum = 4|diceNum = 4 -> ASCII de dau amb 5 punts|diceNum = 4 -> ASCII de dau amb 5 punts|
+|4. Imprimir missatge|diceNum = 4|Msg: "You rolled a {diceNum+1}" i ASCII dau 5 punts|Msg: "You rolled a 5" i ASCII dau 5 punts|
+
+Cas 3. Restar HP a monstre fins 0
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Apareix el monstre i demana "Press any key"|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = 5, diceNum|Enter case 2|Enter case 2|
+|2. Premer una tecla, fer el random i generar valor al diceNum|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = 5, diceNum = 3|Generar random en diceNum de 0 a 5 i assignar valor|Generar random en diceNum de 0 a 5 i assignar valor|
+|3. Restar HP segons diceNum (while mentre monsterMaxHp <= 0)|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = 5, diceNum = 3|monsterMaxHp -= diceNum + 1 --> monsterMaxHp = 1|monsterMaxHp -= diceNum + 1 --> monsterMaxHp = 1|
+|2. Premer una tecla, fer el random i generar valor al diceNum|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = 1, diceNum = 1|Generar random en diceNum de 0 a 5 i assignar valor|Generar random en diceNum de 0 a 5 i assignar valor|
+|3. Restar HP segons diceNum (while mentre monsterMaxHp <= 0)|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = 1, diceNum = 1|monsterMaxHp -= diceNum + 1 --> monsterMaxHp = -1|monsterMaxHp -= diceNum + 1 --> monsterMaxHp = -1|
+|4. Mostrar missatge final|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = -1, diceNum = 1|Msg: "You rolled a {diceNum+1}. The {monstersArray[1]} has 0 HP. Monster defeated!"|Msg: "You rolled a 2. The Forest Goblin 👹 has 0 HP. Monster defeated!"|
+
 ---
