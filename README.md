@@ -108,3 +108,39 @@ Cas 3. Restar HP a monstre fins 0
 |4. Mostrar missatge final|monstersArray [1] = "Forest Goblin 👹", hpMonstersArray [1] = 5, monsterMaxHp = -1, diceNum = 1|Msg: "You rolled a {diceNum+1}. The {monstersArray[1]} has 0 HP. Monster defeated!"|Msg: "You rolled a 2. The Forest Goblin 👹 has 0 HP. Monster defeated!"|
 
 ---
+
+## Chapter 3. Loot the mine (Mineria) ⛏️
+Mostra una matriu 5x5 buida al principi. El jugador té 5 intents per minar. Ha d'introduir coordenades X i Y. La matriu té posicions amb monedes (generades aleatòriament a l'inici). Si encerta, guanya entre 5 i 50 bits.  
+Mostra la matriu actualitzada després de cada intent amb símbols:  
+➖ = No excavat  
+🪙 = Moneda trobada  
+❌ = Excavat sense èxit  
+
+### Joc de proves Chapter 3 📓
+Cas 1. Cas normal només toca moneda un cop
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|Usuari no ha fet inputs|coordX, coordY, wizardCoins, winCoins, attempts = 1|||
+|Usuari fa 1r input|coordX = 0, coordY = 0, wizardCoins = 0, winCoins = 0, attempts = 1|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 2n input|coordX = 1, coordY = 1, wizardCoins = 0, winCoins = 0, attempts = 2|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 3r input|coordX = 2, coordY = 2, wizardCoins = 0, winCoins = 0, attempts = 3|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 4t input|coordX = 3, coordY = 3, wizardCoins = 0, winCoins = 0, attempts = 4|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 5è input|coordX = 4, coordY = 4, wizardCoins = 0, winCoins = 40, attempts = 5|Msg -> “🪙 You found a coin!”|Msg -> “🪙 You found a coin!”|
+|Usuari ja ha minat 5 cops|coordX = 4, coordY = 4, wizardCoins = 40, winCoins = 40, attempts = 5|Msg -> “===== Mining Finished! Total bits obtained: {wizardCoins} 🔥 =====”|Msg -> “===== Mining Finished! Total bits obtained: 40 🔥 =====”|
+
+Cas 2. Cas error caràcter no vàlid o fora de rang (no gasten intents)
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|Usuari no ha fet inputs|coordX, coordY, wizardCoins, winCoins, attempts = 1|||
+|Usuari fa 1r input|coordX = 0, coordY = 0, wizardCoins = 0, winCoins = 0, attempts = 1|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 2n input|coordX = "Hola", coordY = 1, wizardCoins = 0, winCoins = 0, attempts = 2|Msg -> "❌ Invalid input! Must be numbers between 0 and 4."|Msg -> "❌ Invalid input! Must be numbers between 0 and 4."|
+|Usuari fa 3r input|coordX = 1, coordY = 1, wizardCoins = 0, winCoins = 0, attempts = 2|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 4t input|coordX = 2, coordY = 2, wizardCoins = 0, winCoins = 0, attempts = 3|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 5è input|coordX = 90, coordY = 35, wizardCoins = 0, winCoins = 0, attempts = 4|Msg -> "❌ Invalid coordinates! Must be between 0 and 4."|Msg -> "❌ Invalid coordinates! Must be between 0 and 4."|
+|Usuari fa 6è input|coordX = 3, coordY = 3, wizardCoins = 0, winCoins = 0, attempts = 4|Msg -> "❌ Nothing found..."|Msg -> "❌ Nothing found..."|
+|Usuari fa 7è input|coordX = 4, coordY = 4, wizardCoins = 0, winCoins = 40, attempts = 5|Msg -> “🪙 You found a coin!”|Msg -> “🪙 You found a coin!”|
+|Usuari ja ha minat 5 cops|coordX = 4, coordY = 4, wizardCoins = 40, winCoins = 40, attempts = 5|Msg -> “===== Mining Finished! Total bits obtained: {wizardCoins} 🔥 =====”|Msg -> “===== Mining Finished! Total bits obtained: 40 🔥 =====”|
+
+---
+
+
