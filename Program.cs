@@ -3,6 +3,7 @@ using System;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 public class Program
 {
@@ -123,6 +124,28 @@ public class Program
                                  "          | o   o |/\n" +
                                  "          '-------'\n" };
 
+
+        //Variables and constants created for CHAPTER 3
+        const string Ch3Title = "===== Chapter 3: Loot the Mine ⛏️ =====";
+        const string Ch3InputCoorXMsg = "Enter X coordinate ⬇︎ (0-4): "; 
+        const string Ch3InputCoorYMsg = "Enter Y coordinate ➡︎ (0-4): "; 
+        const string Ch3InvalidCoordMsg = "❌ Invalid coordinates! Must be between 0 and 4.";
+        const string Ch3InvalidInputMsg = "❌ Invalid input! Must be numbers between 0 and 4.";
+        const string Ch3StartMsg = "You have 5 attempts to find bits in the mine!";
+        const string Ch3EndMsg = "===== Mining Finished! Total bits obtained: ";
+        const string Ch3CoinFoundMsg = "🪙 You found a coin!";
+        const string Ch3NotCoinFoundMsg = "❌ Nothing found...";
+
+        int wizardCoins = 0;
+        int totalCoins = 0;
+        int coordX = 0;
+        int coordY = 0;
+        int winCoins = 0;
+
+        string[,] mineVisible = new string[6, 6];
+        int[,] mineHidden = new int[6, 6];
+        
+
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
 
@@ -191,6 +214,7 @@ public class Program
                             {
                                 wizardLevel = 1;
                                 totalPower = 0;
+                                wizardCoins = 0;
                                 day = 1;
                                 wizardName = char.ToUpper(wizardName[0]) + wizardName.Substring(1).ToLower();
 
@@ -303,6 +327,110 @@ public class Program
                         break;
 
                     case 3:
+                        Console.WriteLine(Ch3Title);
+                        Console.WriteLine(Ch3StartMsg);
+
+                        // Loop to fill the entire array with emotes -
+                        for (int cx = 0; cx < 6; cx++)
+                        {
+                            for (int cy = 0; cy < 6; cy++)
+                            {
+                                mineVisible[cx, cy] = "➖";
+                            }
+                        }
+                        mineVisible[0, 0] = " ";
+
+                        for (int cx = 0; cx < 5; cx++) 
+                        {
+                            mineVisible[cx+1, 0] = $"{cx}";
+                        }
+
+                        for (int cy = 0; cy < 5; cy++)
+                        {
+                            mineVisible[0, cy+1] = $"{cy} ";
+                        }
+
+                        totalCoins = random.Next(4, 8);
+
+                        /*For loop that generate random in the X and Y coordinates the same number of times as there are coins.
+                          Also assign a value of 1 to one of the positions in the hidden matrix (with the X and Y coordinates)*/
+                        for (int i = 0; i < totalCoins; i++)
+                        {
+                            do
+                            {
+                                coordX = random.Next(1, 6);
+                                coordY = random.Next(1, 6);
+                                mineHidden[coordX, coordY] = 1;
+                            } 
+                            while (mineHidden[coordX, coordY] != 1);
+                            
+                        }
+
+                        //For loop to display visible array
+                        for (int cx = 0; cx < 6; cx++)
+                        {
+                            for (int cy = 0; cy < 6; cy++)
+                            {
+                                Console.Write(mineVisible[cx, cy] + " ");
+                            }
+                            Console.WriteLine();
+                        }
+
+                        for (int attempt = 1; attempt <= 5; attempt++)
+                        {
+                            Console.WriteLine($"Attempt {attempt}/5");
+
+                            int xCoord = -1;
+                            int yCoord = -1;
+
+                            do
+                            {
+                                try
+                                {
+                                    Console.Write(Ch3InputCoorXMsg);
+                                    xCoord = Convert.ToInt32(Console.ReadLine());
+
+                                    Console.Write(Ch3InputCoorYMsg);
+                                    yCoord = Convert.ToInt32(Console.ReadLine());
+
+                                    if (xCoord < 0 || xCoord > 4 || yCoord < 0 || yCoord > 4)
+                                    {
+                                        Console.WriteLine(Ch3InvalidCoordMsg);
+                                    }
+                                }
+                                catch (Exception)
+                                {
+                                    Console.WriteLine(Ch3InvalidInputMsg);
+                                }
+                            }
+                            while (xCoord < 0 || xCoord > 4 || yCoord < 0 || yCoord > 4);
+
+                            if (mineHidden[xCoord+1, yCoord+1] == 1)
+                            {
+                                winCoins = random.Next(5, 51);
+                                wizardCoins += winCoins;
+
+                                Console.WriteLine($"{Ch3CoinFoundMsg} {winCoins} bits!");
+                                mineVisible[xCoord+1, yCoord+1] = "🪙";
+
+                                mineHidden[xCoord+1, yCoord+1] = 0;
+                            }
+                            else
+                            {
+                                Console.WriteLine(Ch3NotCoinFoundMsg);
+                                mineVisible[xCoord+1, yCoord+1] = "❌";
+                            }
+
+                            for (int cx = 0; cx < 6; cx++)
+                            {
+                                for (int cy = 0; cy < 6; cy++)
+                                {
+                                    Console.Write(mineVisible[cx, cy] + " ");
+                                }
+                                Console.WriteLine();
+                            }
+                        }
+                        Console.WriteLine($"{Ch3EndMsg}{wizardCoins} 🔥 =====");
 
                         break;
 
