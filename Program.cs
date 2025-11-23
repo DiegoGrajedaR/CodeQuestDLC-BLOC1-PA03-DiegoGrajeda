@@ -153,6 +153,7 @@ public class Program
 
 
         string[] wizardInventoryArray = new string[0];
+        string[] emptyInventoryArray = new string[0];
 
 
         //Variables and constants created for CHAPTER 5
@@ -173,6 +174,17 @@ public class Program
         string[] shopItemsArray = { "Iron Dagger 🗡️", "Healing Potion ⚗️", "Ancient Key 🗝️", "Crossbow 🏹", "Metal Shield 🛡️" };
         int[] shopPricesArray = { 30, 10, 50, 40, 20 };
 
+
+        //Variables and constants created for CHAPTER 6
+        const string Ch6Title = "===== Chapter 6: Show Attacks 🦸 =====";
+        const string Ch6AvailableAttacksMsg = "Available attacks for level";
+        const string Ch6KeepTrainMsg = "Keep training to unlock new powers!";
+
+        string[] attacksLvl1Array = { "Magic Spark 💫" };
+        string[] attacksLvl2Array = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
+        string[] attacksLvl3Array = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
+        string[] attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
+        string[] attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
 
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
@@ -244,6 +256,7 @@ public class Program
                                 totalPower = 0;
                                 wizardBits = 0;
                                 day = 1;
+                                wizardInventoryArray = emptyInventoryArray;
                                 wizardName = char.ToUpper(wizardName[0]) + wizardName.Substring(1).ToLower();
 
                                 Console.WriteLine(Ch1StartTrainingMsg);
@@ -546,6 +559,68 @@ public class Program
                         break;
 
                     case 6:
+                        Console.WriteLine(Ch6Title);
+                        if (wizardLevel < 5)
+                        {
+                            Console.WriteLine($"{Ch6AvailableAttacksMsg} {wizardLevel}:");
+                        }
+                        else 
+                        {
+                            Console.WriteLine($"{Ch6AvailableAttacksMsg} 5:");
+                        }
+                        if (wizardLevel == 1)
+                        {
+                            foreach (string attack in attacksLvl1Array)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(attack);
+                            }
+                            Console.ResetColor();
+                            Console.WriteLine(Ch6KeepTrainMsg);
+                        }
+                        else if (wizardLevel == 2)
+                        {
+                            foreach (string attack in attacksLvl2Array)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(attack);
+                                Thread.Sleep(1000);
+                            }
+                            Console.ResetColor();
+                            Console.WriteLine(Ch6KeepTrainMsg);
+                        }
+                        else if (wizardLevel == 3)
+                        {
+                            foreach (string attack in attacksLvl3Array)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(attack);
+                                Thread.Sleep(1000);
+                            }
+                            Console.ResetColor();
+                            Console.WriteLine(Ch6KeepTrainMsg);
+                        }
+                        else if (wizardLevel == 4)
+                        {
+                            foreach (string attack in attacksLvl4Array)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(attack);
+                                Thread.Sleep(1000);
+                            }
+                            Console.ResetColor();
+                            Console.WriteLine(Ch6KeepTrainMsg);
+                        }
+                        else
+                        {
+                            foreach (string attack in attacksLvl5Array)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                Console.WriteLine(attack);
+                                Thread.Sleep(1000);
+                            }
+                            Console.ResetColor();
+                        }
 
                         break;
 
