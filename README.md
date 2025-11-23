@@ -214,3 +214,43 @@ El mag ha de tenir prou bits per poder comprar, en cas de tenir suficients es co
 |3. Surts de la tenda|validOptionShop= true, selectedItem = 2, shopItemsArray[selectedItem -1] = "Healing Potion ⚗️", shopPricesArray[selectedItem - 1] = 10, wizardBites = 30|Return to main menu and updated wizardInventory|Return to main menu and updated wizardInventory|
 
 ---
+
+
+## Chapter 6. Show Attacks 🦸
+En aquest capítol es mostraran els atacs disponibles segons el nivell actual del mag. Cada nivell té diferents atacs, per tant tracta de pujar de nivell de desbloquejar el atacs més poderosos.
+
+### Joc de proves Chapter 6 📓
+**Cas 1. El usuari/mag és nivell 1**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 1, attacksLvl1Array = { "Magic Spark 💫" }|Enter case 6|Enter case 6|
+|2. Salta condicional if (wizardLevel == 1)|wizardLevel = 1, attacksLvl1Array = { "Magic Spark 💫" }|Msg -> "Available attacks for level 1: Magic Spark 💫"|Msg-> "Available attacks for level 1: Magic Spark 💫"|
+|3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 1, attacksLvl1Array = { "Magic Spark 💫" }|Break and return to main menu|Break and return to main menu|
+
+**Cas 2. El usuari/mag és nivell 2**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 2, attacksLvl2Array = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" }|Enter case 6|Enter case 6|
+|2. Salta condicional if (wizardLevel == 1)|wizardLevel = 2, attacksLvl2Array = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" }|Msg -> "Available attacks for level 2: Fireball 🔥, Ice Ray 🥏, Arcane Shield ⚕️"|Msg-> "Available attacks for level 2: Fireball 🔥, Ice Ray 🥏, Arcane Shield ⚕️"|
+|3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 2, attacksLvl2Array = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" }|Break and return to main menu|Break and return to main menu|
+
+**Cas 3. El usuari/mag és nivell 3**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 3, attacksLvl3Array = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" }|Enter case 6|Enter case 6|
+|2. Salta condicional if (wizardLevel == 1)|wizardLevel = 3, attacksLvl3Array = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" }|Msg -> "Available attacks for level 3: Meteor ☄️, Pure Energy Explosion 💥, Minor Charm 🎭, Air Strike 🍃"|Msg-> "Available attacks for level 3: Meteor ☄️, Pure Energy Explosion 💥, Minor Charm 🎭, Air Strike 🍃"|
+|3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 3, attacksLvl3Array = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" }|Break and return to main menu|Break and return to main menu|
+
+**Cas 4. El usuari/mag és nivell 4**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 4, attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" }|Enter case 6|Enter case 6|
+|2. Salta condicional if (wizardLevel == 1)|wizardLevel = 4, attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" }|Msg -> "Available attacks for level 4: Wave of Light ⚜️, Storm of Wings 🐦"|Msg-> "Available attacks for level 4: Wave of Light ⚜️, Storm of Wings 🐦"|
+|3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 4, attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" }|Break and return to main menu|Break and return to main menu|
+
+**Cas 5. El usuari/mag és nivell 5**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Enter case 6|Enter case 6|
+|2. Salta condicional if (wizardLevel == 1)|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Msg -> "Available attacks for level 5: Cataclysm 🌋, Portal of Chaos 🌀, "Arcane Blood Pact 🩸, Elemental Storm ⛈️"|Msg -> "Available attacks for level 5: Cataclysm 🌋, Portal of Chaos 🌀, "Arcane Blood Pact 🩸, Elemental Storm ⛈️"|
+|3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Break and return to main menu|Break and return to main menu|
