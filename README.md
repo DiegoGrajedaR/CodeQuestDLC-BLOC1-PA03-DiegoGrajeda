@@ -254,3 +254,53 @@ En aquest capítol es mostraran els atacs disponibles segons el nivell actual de
 |1. Escollir opció 6 en el switch (MENÚ principal)|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Enter case 6|Enter case 6|
 |2. Salta condicional if (wizardLevel == 1)|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Msg -> "Available attacks for level 5: Cataclysm 🌋, Portal of Chaos 🌀, "Arcane Blood Pact 🩸, Elemental Storm ⛈️"|Msg -> "Available attacks for level 5: Cataclysm 🌋, Portal of Chaos 🌀, "Arcane Blood Pact 🩸, Elemental Storm ⛈️"|
 |3. Surts del case 6 i tornes al MENÚ principal|wizardLevel = 5, attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" }|Break and return to main menu|Break and return to main menu|
+
+---
+
+
+## Chapter 7. Decode ancient Scroll (Desxifratge de pergamins) 📜
+En aquesta opció es presenta 3 sub-opcions per treballar amb el desxifratge del pergamí:  
+- Eliminar espais del primer pergamí  
+- Comptar vocals (incloses accentuades) del segon pergamí  
+- Extreure números del tercer pergamí  
+
+Quan es completen les 3 tasques, mostra un missatge d'èxit èpic per haver desxifrat el pergamí.
+
+### Joc de proves Chapter 7 📓
+**Cas 1. El usuari/mag entra el menú de sub-opcions i fa un input no numéric**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 7 en el switch (MENÚ principal)|validOptionSelected = false, exitScrollMenu = false, validNumber|Enter case 7|Enter case 7|
+|2. Dins de les sub-opcions es fa un input no numéric|validOptionSelected = false, exitScrollMenu = false, validNumber = false|Msg -> "❌ Invalid input."|Msg -> "❌ Invalid input."|
+|3. Torna a demanar un altre input fins que sigui valid (bucle while fins que exitScrollMenu = false)|validOptionSelected = false, exitScrollMenu = false, validNumber = false|Msg -> "Your choice: "|Msg -> "Your choice: "|
+
+**Cas 2. El usuari/mag entra el menú de sub-opcions i fa un input numéric, opció 0**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 7 en el switch (MENÚ principal)|validOptionSelected = false, exitScrollMenu = false, validNumber|Enter case 7|Enter case 7|
+|2. Dins de les sub-opcions es fa un input numéric igual a 0|validOptionSelected = false, exitScrollMenu = true, validNumber = true|Msg -> "Returning..."|Msg -> "Returning..."|
+|3. Torna al menú principal|validOptionSelected = false, exitScrollMenu = false, validNumber = false|Msg -> Break and return to main menu|Msg -> Break and return to main menu|
+
+**Cas 3. El usuari/mag entra el menú de sub-opcions i fa un input numéric, opció 1**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 7 en el switch (MENÚ principal)|validOptionSelected = false, exitScrollMenu = false, validNumber, scrollTask1Done = false|Enter case 7|Enter case 7|
+|2. Dins de les sub-opcions es fa un input numéric igual a 1|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true |Msg -> "Deciphered spell: The🐲sleepsinthemountainoffire🔥"|Msg -> "Deciphered spell: The🐲sleepsinthemountainoffire🔥"|
+|3. Torna al menú principal|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true|Msg -> Break and return to main menu|Msg -> Break and return to main menu|
+
+**Cas 4. El usuari/mag entra el menú de sub-opcions i fa un input numéric, opció 2**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 7 en el switch (MENÚ principal)|validOptionSelected = false, exitScrollMenu = false, validNumber, scrollTask1Done = false, scrollTask2Done = false|Enter case 7|Enter case 7|
+|2. Dins de les sub-opcions es fa un input numéric igual a 2|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true, scrollTask2Done = true|Msg -> "The scroll contains 12 magical runes (vowels)."|Msg -> "The scroll contains 12 magical runes (vowels)."|
+|3. Torna al menú principal|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true, scrollTask2Done = true|Msg -> Break and return to main menu|Msg -> Break and return to main menu|
+
+**Cas 5. El usuari/mag entra el menú de sub-opcions i fa un input numéric, opció 3 amb tots els altres reptes fets**
+|Instrucció|Variables|Resultat esperat|Output|
+|----------|---------|----------------|------|
+|1. Escollir opció 7 en el switch (MENÚ principal)|validOptionSelected = false, exitScrollMenu = false, validNumber, scrollTask1Done = false, scrollTask2Done = false, scrollTask3Done = false|Enter case 7|Enter case 7|
+|2. Dins de les sub-opcions es fa un input numéric igual a 3|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true, scrollTask2Done = true, scrollTask3Done = true|Msg -> "Secret code extracted: 5638"|Msg -> "Secret code extracted: 5638"|
+|3. Salta el IF dels tres reptes fets i surt missatge de que has guanyat|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true, scrollTask2Done = true, scrollTask3Done = true|Msg -> "🔥 The scroll glows with ancient power...✔️ You have fully decoded the ANCIENT SCROLL!"|Msg -> "🔥 The scroll glows with ancient power...✔️ You have fully decoded the ANCIENT SCROLL!"|
+|4. Torna al menú principal|validOptionSelected = true, exitScrollMenu = true, validNumber = true, scrollTask1Done = true, scrollTask2Done = true, scrollTask3Done = true|Msg -> Break and return to main menu|Msg -> Break and return to main menu|
+
+---
