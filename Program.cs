@@ -186,6 +186,31 @@ public class Program
         string[] attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
         string[] attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
 
+
+        //Variables and constants created for CHAPTER 7
+        const string Ch7Title = "===== Chapter 7: Decode Ancient Scroll 📜 =====";
+        const string Ch7Intro = "You found an ancient scroll with encrypted messages!";
+        const string Ch7EpicEnding ="🔥 The scroll glows with ancient power...\n✔️ You have fully decoded the ANCIENT SCROLL!";
+        const string Ch7Menu =  "Scroll to decode:\n" +
+                                "  1. The 🐲 sleeps in the mountain of fire 🔥\n" +
+                                "  2. Ancient magic flows through the crystal caves\n" +
+                                "  3. Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️\n\n" +
+                                "You must decode the following scroll:\n" +
+                                "Choose a decoding operation:\n" +
+                                "1. Decipher spell (remove spaces)\n" +
+                                "2. Count magical runes (vowels)\n" +
+                                "3. Extract secret code (numbers)\n" +
+                                "0. Return";
+        const string Ch7InvalidInputMsg = "❌ Invalid input.";
+        const string Ch7InvalidOptionMsg = "❌ Invalid option.";
+        const string Ch7ReturnMenuMsg = "Returning...";
+
+        bool scrollTask1Done = false;
+        bool scrollTask2Done = false;
+        bool scrollTask3Done = false;
+
+        string[] scrollsChallenges = new string[]{"The 🐲 sleeps in the mountain of fire 🔥", "Ancient magic flows through the crystal caves", "Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️"};
+
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
 
@@ -257,6 +282,7 @@ public class Program
                                 wizardBits = 0;
                                 day = 1;
                                 wizardInventoryArray = emptyInventoryArray;
+                                scrollTask1Done = scrollTask2Done = scrollTask3Done = false;
                                 wizardName = char.ToUpper(wizardName[0]) + wizardName.Substring(1).ToLower();
 
                                 Console.WriteLine(Ch1StartTrainingMsg);
@@ -625,6 +651,102 @@ public class Program
                         break;
 
                     case 7:
+                        Console.WriteLine(Ch7Title);
+                        Console.WriteLine(Ch7Intro);
+                        Console.WriteLine();
+
+                        int scrollOption = -1;
+
+                        bool exitScrollMenu = false;
+                        bool validOptionSelected = false;
+
+                        while (!exitScrollMenu)
+                        {
+                            Console.WriteLine(Ch7Menu);
+                            Console.Write("Your choice: ");
+
+                            bool validNumber = int.TryParse(Console.ReadLine(), out scrollOption);
+
+                            if (!validNumber)
+                            {
+                                Console.WriteLine(Ch7InvalidInputMsg);
+                            }
+                            else if (scrollOption == 0)
+                            {
+                                Console.WriteLine(Ch7ReturnMenuMsg);
+                                exitScrollMenu = true;
+                            }
+                            else if (scrollOption < 1 || scrollOption > 3)
+                            {
+                                Console.WriteLine(Ch7InvalidOptionMsg);
+                            }
+                            else
+                            {
+                                validOptionSelected = true;
+                                exitScrollMenu = true;
+                            }
+                        }
+
+                        if (validOptionSelected) 
+                        {
+                            string selectedScroll = scrollsChallenges[scrollOption - 1];
+
+                            Console.WriteLine("\nSelected scroll:");
+                            Console.WriteLine(selectedScroll);
+                            Console.WriteLine();
+
+                            switch (scrollOption)
+                            {
+                                // Option 1, Remove spaces
+                                case 1:
+                                    string decoded = selectedScroll.Replace(" ", "");
+                                    Console.WriteLine($"Deciphered spell: {decoded}");
+                                    scrollTask1Done = true;
+                                    break;
+
+                                // Option 2, Count vowels
+                                case 2:
+                                    string vowels = "aeiouAEIOU";
+                                    int vowelCount = 0;
+
+                                    foreach (char lletra in selectedScroll)
+                                    {
+                                        if (vowels.Contains(lletra))
+                                        {
+                                            vowelCount++;
+                                        }
+                                    }
+                                    Console.WriteLine($"The scroll contains {vowelCount} magical runes (vowels).");
+                                    scrollTask2Done = true;
+                                    break;
+
+                                // Option 3, Extract numbers
+                                case 3:
+                                    string numbers = "1234567890";
+                                    string extractedNumbers = "";
+
+                                    foreach (char lletra in selectedScroll)
+                                    {
+                                        if (numbers.Contains(lletra))
+                                        {
+                                            extractedNumbers += lletra; 
+                                        }
+                                    }
+
+                                    Console.WriteLine($"Secret code extracted: {extractedNumbers}");
+                                    scrollTask3Done = true;
+                                    break;
+                            }
+
+                            // IF conditional that checks that all three challenges are completed
+                            if (scrollTask1Done && scrollTask2Done && scrollTask3Done)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                Console.WriteLine(LineBreak);
+                                Console.WriteLine(Ch7EpicEnding);
+                                Console.ResetColor();
+                            }
+                        }
 
                         break;
 
