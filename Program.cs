@@ -155,6 +155,25 @@ public class Program
         string[] wizardInventoryArray = new string[0];
 
 
+        //Variables and constants created for CHAPTER 5
+        const string Ch5Title = "===== Chapter 5: Item Shop 🛒 =====";
+        const string Ch5ActualBitsMsg = "You have {0} bits available";
+        const string Ch5ChooseItemMsg = "Choose an item to buy (1-5), or 0 to exit: ";
+        const string Ch5NotEnoughCoins = "❌ You don't have enough bits!";
+        const string Ch5InvalidInputMsg = "❌ Invalid Input";
+        const string Ch5InvalidOptionMsg = "❌ Invalid option. Choose an option between 0 and 5.";
+        const string Ch5RemainBits = "Bits remaining:";
+        const string Ch5ExitShopOption = "0. Exit shop";
+        const string Ch5ExitShopMsg = "Leaving the shop... Thank you for your visit.";
+
+        string actualBitsMsg = "";
+        int selectedItem = -1;
+        bool validOptionShop = false;
+
+        string[] shopItemsArray = { "Iron Dagger 🗡️", "Healing Potion ⚗️", "Ancient Key 🗝️", "Crossbow 🏹", "Metal Shield 🛡️" };
+        int[] shopPricesArray = { 30, 10, 50, 40, 20 };
+
+
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
 
@@ -462,6 +481,67 @@ public class Program
                         break;
 
                     case 5:
+                        validOptionShop = false;
+                        Console.WriteLine(Ch5Title);
+                        actualBitsMsg = string.Format(Ch5ActualBitsMsg, wizardBits);
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(actualBitsMsg);
+                        Console.ResetColor();
+
+                        for (int i = 0; i < shopItemsArray.Length; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. {shopItemsArray[i]} - {shopPricesArray[i]} bits");
+                        }
+                        Console.WriteLine(Ch5ExitShopOption);
+
+                        while (!validOptionShop)
+                        {
+                            try
+                            {
+                                Console.WriteLine(Ch5ChooseItemMsg);
+                                selectedItem = Convert.ToInt32(Console.ReadLine());
+                            }
+                            catch (Exception)
+                            {
+                                Console.WriteLine(Ch5InvalidInputMsg);
+                                validOptionShop = true;
+                            }
+
+                            if (selectedItem == 0)
+                            {
+                                Console.WriteLine(Ch5ExitShopMsg);
+                                validOptionShop = true;
+                            }
+                            else if (selectedItem < 0 || selectedItem > 5)
+                            {
+                                Console.WriteLine(Ch5InvalidOptionMsg);
+                            }
+                            else if (selectedItem >= 1 && selectedItem <= 5 && wizardBits < shopPricesArray[selectedItem - 1])
+                            {
+                                Console.WriteLine(Ch5NotEnoughCoins);
+                                validOptionShop = true;
+                            }
+                            else
+                            {
+                                wizardBits -= shopPricesArray[selectedItem - 1];
+
+                                string[] newInventory = new string[wizardInventoryArray.Length + 1];
+                                for (int i = 0; i < wizardInventoryArray.Length; i++)
+                                {
+                                    newInventory[i] = wizardInventoryArray[i];
+                                }
+                                newInventory[newInventory.Length - 1] = shopItemsArray[selectedItem - 1];
+
+                                wizardInventoryArray = newInventory;
+
+                                Console.WriteLine($"✔️ You bought: {shopItemsArray[selectedItem - 1]} for {shopPricesArray[selectedItem - 1]} bits.");
+                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.WriteLine($"{Ch5RemainBits} {wizardBits}");
+                                Console.ResetColor();
+
+                                validOptionShop = true;
+                            }
+                        }
 
                         break;
 
