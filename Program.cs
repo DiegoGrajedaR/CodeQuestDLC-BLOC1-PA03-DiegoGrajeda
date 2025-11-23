@@ -136,7 +136,7 @@ public class Program
         const string Ch3CoinFoundMsg = "🪙 You found a coin!";
         const string Ch3NotCoinFoundMsg = "❌ Nothing found...";
 
-        int wizardCoins = 0;
+        int wizardBits = 0;
         int totalCoins = 0;
         int coordX = 0;
         int coordY = 0;
@@ -144,7 +144,16 @@ public class Program
 
         string[,] mineVisible = new string[6, 6];
         int[,] mineHidden = new int[6, 6];
-        
+
+
+        //Variables and constants created for CHAPTER 4
+        const string Ch4Title = "===== Chapter 4: Inventory 🎒 =====";
+        const string Ch4InventoryMsg = "Your inventory of items contains: ";
+        const string Ch4EmptyMsg = "Your inventory is empty.";
+
+
+        string[] wizardInventoryArray = new string[0];
+
 
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
@@ -214,7 +223,7 @@ public class Program
                             {
                                 wizardLevel = 1;
                                 totalPower = 0;
-                                wizardCoins = 0;
+                                wizardBits = 0;
                                 day = 1;
                                 wizardName = char.ToUpper(wizardName[0]) + wizardName.Substring(1).ToLower();
 
@@ -408,7 +417,7 @@ public class Program
                             if (mineHidden[xCoord+1, yCoord+1] == 1)
                             {
                                 winCoins = random.Next(5, 51);
-                                wizardCoins += winCoins;
+                                wizardBits += winCoins;
 
                                 Console.WriteLine($"{Ch3CoinFoundMsg} {winCoins} bits!");
                                 mineVisible[xCoord+1, yCoord+1] = "🪙";
@@ -430,12 +439,26 @@ public class Program
                                 Console.WriteLine();
                             }
                         }
-                        Console.WriteLine($"{Ch3EndMsg}{wizardCoins} 🔥 =====");
+                        Console.WriteLine($"{Ch3EndMsg}{wizardBits} 🔥 =====");
 
                         break;
 
                     case 4:
+                        Console.WriteLine(Ch4Title);
 
+                        if (wizardInventoryArray.Length == 0) 
+                        {
+                            Console.WriteLine(Ch4EmptyMsg);
+                        }
+                        else 
+                        {
+                            Console.WriteLine(Ch4InventoryMsg);
+                            foreach(string item in wizardInventoryArray) 
+                            {
+                                Console.WriteLine($"- {item}");
+                            }
+                        }
+                        
                         break;
 
                     case 5:
