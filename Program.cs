@@ -75,7 +75,7 @@ public class Program
         int monsterMaxHp = 0;
         bool defeatedMonster = false;
         string[] monstersArray = { "Wandering Skeleton 💀", "Forest Goblin 👹", "Green Slime 🟢", "Ember Wolf 🐺", "Iron Golem 🤖", "Giant Spider 🕷️", "Lost Necromancer 🧝‍♂️", "Ancient Dragon 🐉" };
-        int[] hpMonstersArray = {3, 5, 10, 11, 15, 18, 20, 50};
+        int[] hpMonstersArray = { 3, 5, 10, 11, 15, 18, 20, 50 };
         string[] diceArray = {   "            ________\n" +
                                  "           /       /|\n" +
                                  "          /_______/ |\n" +
@@ -127,8 +127,8 @@ public class Program
 
         //Variables and constants created for CHAPTER 3
         const string Ch3Title = "===== Chapter 3: Loot the Mine ⛏️ =====";
-        const string Ch3InputCoorXMsg = "Enter X coordinate ⬇︎ (0-4): "; 
-        const string Ch3InputCoorYMsg = "Enter Y coordinate ➡︎ (0-4): "; 
+        const string Ch3InputCoorXMsg = "Enter X coordinate ⬇︎ (0-4): ";
+        const string Ch3InputCoorYMsg = "Enter Y coordinate ➡︎ (0-4): ";
         const string Ch3InvalidCoordMsg = "❌ Invalid coordinates! Must be between 0 and 4.";
         const string Ch3InvalidInputMsg = "❌ Invalid input! Must be numbers between 0 and 4.";
         const string Ch3StartMsg = "You have 5 attempts to find bits in the mine!";
@@ -180,18 +180,21 @@ public class Program
         const string Ch6AvailableAttacksMsg = "Available attacks for level";
         const string Ch6KeepTrainMsg = "Keep training to unlock new powers!";
 
-        string[] attacksLvl1Array = { "Magic Spark 💫" };
-        string[] attacksLvl2Array = { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" };
-        string[] attacksLvl3Array = { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" };
-        string[] attacksLvl4Array = { "Wave of Light ⚜️", "Storm of Wings 🐦" };
-        string[] attacksLvl5Array = { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" };
+        string[][] attacksByLevel =
+        {
+            new string[] { "Magic Spark 💫" }, 
+            new string[] { "Fireball 🔥", "Ice Ray 🥏", "Arcane Shield ⚕️" }, 
+            new string[] { "Meteor ☄️", "Pure Energy Explosion 💥", "Minor Charm 🎭", "Air Strike 🍃" },
+            new string[] { "Wave of Light ⚜️", "Storm of Wings 🐦" }, 
+            new string[] { "Cataclysm 🌋", "Portal of Chaos 🌀", "Arcane Blood Pact 🩸", "Elemental Storm ⛈️" } 
+        };
 
 
         //Variables and constants created for CHAPTER 7
         const string Ch7Title = "===== Chapter 7: Decode Ancient Scroll 📜 =====";
         const string Ch7Intro = "You found an ancient scroll with encrypted messages!";
-        const string Ch7EpicEnding ="🔥 The scroll glows with ancient power...\n✔️ You have fully decoded the ANCIENT SCROLL!";
-        const string Ch7Menu =  "Scroll to decode:\n" +
+        const string Ch7EpicEnding = "🔥 The scroll glows with ancient power...\n✔️ You have fully decoded the ANCIENT SCROLL!";
+        const string Ch7Menu = "Scroll to decode:\n" +
                                 "  1. The 🐲 sleeps in the mountain of fire 🔥\n" +
                                 "  2. Ancient magic flows through the crystal caves\n" +
                                 "  3. Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️\n\n" +
@@ -209,7 +212,7 @@ public class Program
         bool scrollTask2Done = false;
         bool scrollTask3Done = false;
 
-        string[] scrollsChallenges = new string[]{"The 🐲 sleeps in the mountain of fire 🔥", "Ancient magic flows through the crystal caves", "Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️"};
+        string[] scrollsChallenges = new string[] { "The 🐲 sleeps in the mountain of fire 🔥", "Ancient magic flows through the crystal caves", "Spell: Ignis 5 🔥, Aqua 6 💧, Terra 3 🌍, Ventus 8 🌪️" };
 
         //This command will make the emotes/emojis visible
         Console.OutputEncoding = Encoding.UTF8;
@@ -350,7 +353,7 @@ public class Program
 
                         monsterAppears = string.Format(Ch2MonsterAppearsMsg, monstersArray[monsterNameHpOption]);
                         monsterActualHp = string.Format(Ch2MonsterHpMsg, monstersArray[monsterNameHpOption], monsterMaxHp);
-                        rollDice = string.Format(Ch2DiceNum, diceNum+1);
+                        rollDice = string.Format(Ch2DiceNum, diceNum + 1);
 
                         Console.WriteLine($"{monsterAppears} \n{monsterActualHp}");
 
@@ -376,7 +379,7 @@ public class Program
                                 {
                                     welcomeWizard = $"===== Welcome, {wizardName} the {wizardRange} with level {Ch2MaxWizardLevel} =====";
                                 }
-                                else if (wizardName.Equals("")) 
+                                else if (wizardName.Equals(""))
                                 {
                                     welcomeWizard = "";
                                 }
@@ -385,7 +388,7 @@ public class Program
                                     welcomeWizard = $"===== Welcome, {wizardName} the {wizardRange} with level {wizardLevel} =====";
                                 }
                             }
-                            else 
+                            else
                             {
                                 Console.WriteLine($"{Ch2HitMonster} \n{monsterActualHp}");
                             }
@@ -407,14 +410,14 @@ public class Program
                         }
                         mineVisible[0, 0] = " ";
 
-                        for (int cx = 0; cx < 5; cx++) 
+                        for (int cx = 0; cx < 5; cx++)
                         {
-                            mineVisible[cx+1, 0] = $"{cx}";
+                            mineVisible[cx + 1, 0] = $"{cx}";
                         }
 
                         for (int cy = 0; cy < 5; cy++)
                         {
-                            mineVisible[0, cy+1] = $"{cy} ";
+                            mineVisible[0, cy + 1] = $"{cy} ";
                         }
 
                         totalCoins = random.Next(4, 8);
@@ -428,9 +431,9 @@ public class Program
                                 coordX = random.Next(1, 6);
                                 coordY = random.Next(1, 6);
                                 mineHidden[coordX, coordY] = 1;
-                            } 
+                            }
                             while (mineHidden[coordX, coordY] != 1);
-                            
+
                         }
 
                         //For loop to display visible array
@@ -472,20 +475,20 @@ public class Program
                             }
                             while (xCoord < 0 || xCoord > 4 || yCoord < 0 || yCoord > 4);
 
-                            if (mineHidden[xCoord+1, yCoord+1] == 1)
+                            if (mineHidden[xCoord + 1, yCoord + 1] == 1)
                             {
                                 winCoins = random.Next(5, 51);
                                 wizardBits += winCoins;
 
                                 Console.WriteLine($"{Ch3CoinFoundMsg} {winCoins} bits!");
-                                mineVisible[xCoord+1, yCoord+1] = "🪙";
+                                mineVisible[xCoord + 1, yCoord + 1] = "🪙";
 
-                                mineHidden[xCoord+1, yCoord+1] = 0;
+                                mineHidden[xCoord + 1, yCoord + 1] = 0;
                             }
                             else
                             {
                                 Console.WriteLine(Ch3NotCoinFoundMsg);
-                                mineVisible[xCoord+1, yCoord+1] = "❌";
+                                mineVisible[xCoord + 1, yCoord + 1] = "❌";
                             }
 
                             for (int cx = 0; cx < 6; cx++)
@@ -504,19 +507,19 @@ public class Program
                     case 4:
                         Console.WriteLine(Ch4Title);
 
-                        if (wizardInventoryArray.Length == 0) 
+                        if (wizardInventoryArray.Length == 0)
                         {
                             Console.WriteLine(Ch4EmptyMsg);
                         }
-                        else 
+                        else
                         {
                             Console.WriteLine(Ch4InventoryMsg);
-                            foreach(string item in wizardInventoryArray) 
+                            foreach (string item in wizardInventoryArray)
                             {
                                 Console.WriteLine($"- {item}");
                             }
                         }
-                        
+
                         break;
 
                     case 5:
@@ -586,66 +589,24 @@ public class Program
 
                     case 6:
                         Console.WriteLine(Ch6Title);
+
+                        int levelIndex = Math.Clamp(wizardLevel, 1, 5) - 1;
+
+                        Console.WriteLine($"{Ch6AvailableAttacksMsg} {wizardLevel}:");
+
+                        // Show attacks by LVL
+                        foreach (string attack in attacksByLevel[levelIndex])
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(attack);
+                            Thread.Sleep(800);
+                        }
+                        Console.ResetColor();
+
+                        // Message if you are not LVL 5
                         if (wizardLevel < 5)
                         {
-                            Console.WriteLine($"{Ch6AvailableAttacksMsg} {wizardLevel}:");
-                        }
-                        else 
-                        {
-                            Console.WriteLine($"{Ch6AvailableAttacksMsg} 5:");
-                        }
-                        if (wizardLevel == 1)
-                        {
-                            foreach (string attack in attacksLvl1Array)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(attack);
-                            }
-                            Console.ResetColor();
                             Console.WriteLine(Ch6KeepTrainMsg);
-                        }
-                        else if (wizardLevel == 2)
-                        {
-                            foreach (string attack in attacksLvl2Array)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(attack);
-                                Thread.Sleep(1000);
-                            }
-                            Console.ResetColor();
-                            Console.WriteLine(Ch6KeepTrainMsg);
-                        }
-                        else if (wizardLevel == 3)
-                        {
-                            foreach (string attack in attacksLvl3Array)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(attack);
-                                Thread.Sleep(1000);
-                            }
-                            Console.ResetColor();
-                            Console.WriteLine(Ch6KeepTrainMsg);
-                        }
-                        else if (wizardLevel == 4)
-                        {
-                            foreach (string attack in attacksLvl4Array)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(attack);
-                                Thread.Sleep(1000);
-                            }
-                            Console.ResetColor();
-                            Console.WriteLine(Ch6KeepTrainMsg);
-                        }
-                        else
-                        {
-                            foreach (string attack in attacksLvl5Array)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(attack);
-                                Thread.Sleep(1000);
-                            }
-                            Console.ResetColor();
                         }
 
                         break;
@@ -687,7 +648,7 @@ public class Program
                             }
                         }
 
-                        if (validOptionSelected) 
+                        if (validOptionSelected)
                         {
                             string selectedScroll = scrollsChallenges[scrollOption - 1];
 
@@ -729,7 +690,7 @@ public class Program
                                     {
                                         if (numbers.Contains(lletra))
                                         {
-                                            extractedNumbers += lletra; 
+                                            extractedNumbers += lletra;
                                         }
                                     }
 
